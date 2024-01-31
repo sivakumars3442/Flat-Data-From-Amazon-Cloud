@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+	  <TargetFrameworks>net6.0;net7.0</TargetFrameworks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
+  <ItemGroup>
+	<PackageReference Include="AWSSDK.S3" Version="3.7.101.52" />
+	<PackageReference Include="Syncfusion.EJ2.AspNet.Core" Version="*" />
+  </ItemGroup>
+
+</Project>
