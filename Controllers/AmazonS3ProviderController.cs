@@ -28,7 +28,7 @@ namespace EJ2AmazonS3ASPCoreFileProvider.Controllers
             this.operation.RegisterAmazonS3("syncfusion-filemanager", "AKIAWH6GYCX3QHD3VSEP", "DL/HmwoO3NHjatmugOLneok9I3XU05ZpnJ7p+FkW", "us-east-1");
         }
         [Route("AmazonS3FileOperations")]
-        public object AmazonS3FileOperations([FromBody] FileManagerDirectoryContent args)
+        public object AmazonS3FileOperations()
         {
             List<FileManagerDirectoryContent> FileData = new List<FileManagerDirectoryContent>();
             FileData = this.operation.GetFile("/", false, null);
@@ -47,5 +47,16 @@ namespace EJ2AmazonS3ASPCoreFileProvider.Controllers
             }
             return FileData;
         }
-    }
+		[Route("AmazonS3Download")]
+		public IActionResult AmazonS3Download(string downloadInput)
+		{
+			FileManagerDirectoryContent args = JsonConvert.DeserializeObject<FileManagerDirectoryContent>(downloadInput);
+			return operation.Download(args.Path, args.Names);
+		}
+		[Route("AmazonS3GetImage")]
+		public IActionResult AmazonS3GetImage(FileManagerDirectoryContent args)
+		{
+			return operation.GetImage(args.Path, args.Id, false, null, args.Data);
+		}
+	}
 }
